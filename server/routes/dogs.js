@@ -5,6 +5,14 @@ const router = express.Router();
 const Dogs = require('../models/Dog');
 const User = require('../models/User');
 
+// List All Dogs from user
+router.get('/dogs', (req, res) => {
+  Dogs.find({ owner: req.user.id })
+    .populate('owner')
+    .then(dogs => res.json(dogs))
+    .catch(err => res.json(err));
+});
+
 // Add new Pet
 router.post('/add-pet', (req, res) => {
   const { name, gender, race, age, size, additionalInfo, picture } = req.body;
@@ -17,6 +25,7 @@ router.post('/add-pet', (req, res) => {
     size,
     additionalInfo,
     picture,
+    owner: req.user,
   });
 
   newDog

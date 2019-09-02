@@ -9,7 +9,7 @@ const walkSchema = new Schema(
     days: [{ type: String, required: true }],
     time: { type: Number, required: true },
     address: { type: String, required: true },
-    confirmationCode: { type: String },
+    // confirmationCode: { type: String },
     owner: { type: Schema.Types.ObjectId, ref: 'User' },
     walker: { type: Schema.Types.ObjectId, ref: 'User' },
     status: { type: String, enum: ['Pending', 'Confirmed'] },

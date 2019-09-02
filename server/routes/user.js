@@ -6,7 +6,7 @@ const User = require('../models/User');
 // Populates Logged In User
 router.get('/user', (req, res) => {
   User.findById(req.user.id)
-    .populate('dogs')
+    .populate('dogs walks')
     .then(user => res.json(user))
     .catch(err => res.json(err));
 });

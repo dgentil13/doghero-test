@@ -11,7 +11,7 @@ const dogSchema = new Schema(
     age: { type: Number },
     size: { type: String },
     additionalInfo: { type: String },
-    // owner: [{ type: Schema.Types.ObjectId, ref: 'User' }],
+    owner: [{ type: Schema.Types.ObjectId, ref: 'User' }],
   },
   {
     timestamps: {

@@ -6,7 +6,7 @@ const router = express.Router();
 const Walks = require('../models/Walks');
 const User = require('../models/User');
 
-let transporter = nodemailer.createTransport({
+const transporter = nodemailer.createTransport({
   host: 'smtp.mailtrap.io',
   port: 2525,
   auth: {
@@ -17,29 +17,37 @@ let transporter = nodemailer.createTransport({
   // service: 'gmail',
   // auth: {
   //   user: 'ahoydanni3@gmail.com',
-  //   pass: 'Gamegrumps1307',
+  //   pass: '',
   // },
+});
+
+// List All Walks
+router.get('/walks', (req, res) => {
+  Walks.find()
+    .populate('walker owner')
+    .then(walks => res.json(walks))
+    .catch(err => res.json(err));
 });
 
 // Create a Walk
 router.post('/create-walk', (req, res) => {
   const { type, duration, days, time, address } = req.body;
-  const characters =
-    '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
-  let token = '';
-  for (let i = 0; i < 25; i++) {
-    token += characters[Math.floor(Math.random() * characters.length)];
-  }
-  const confirmationCode = token;
+  // const characters =
+  //   '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+  // let token = '';
+  // for (let i = 0; i < 25; i++) {
+  //   token += characters[Math.floor(Math.random() * characters.length)];
+  // }
+  // const confirmationCode = token;
   const newWalk = new Walks({
     type,
     duration,
     days,
     time,
     address,
-    owner: req.user,
     status: 'Pending',
-    confirmationCode,
+    owner: req.user,
+    // confirmationCode,
   });
 
   newWalk
@@ -66,7 +74,6 @@ router.post('/create-walk', (req, res) => {
               subject: 'Dog Hero: New Walk Available!',
               text: `Theres a new walk available for you! 
               ${newWalk.owner.number}  ${newWalk.owner.fullName}
-             https://localhost:8000/confirm/${confirmationCode}
               `,
             });
           });
@@ -77,10 +84,26 @@ router.post('/create-walk', (req, res) => {
     .catch(err => res.status(400).json(err));
 });
 
-router.get('/confirm/:confirmNum', (req, res) => {
+// router.get('/confirm/:confirmNum', (req, res) => {
+//   Walks.find(
+//     { confirmationCode: req.params.confirmNum },
+//     { status: 'Confirmed' },
+//   )
+//     .then(console.log('ta confirmado ja'))
+//     .catch(
+//       Walks.findOneAndUpdate(
+//         { confirmationCode: req.params.confirmNum },
+//         { status: 'Confirmed' },
+//       )
+//         .then(res => res.status(200).json(res))
+//         .catch(err => res.status(400).json(err)),
+//     );
+// });
+
+router.put('/confirm/:walkId', (req, res) => {
   Walks.findOneAndUpdate(
-    { confirmationCode: req.params.confirmNum },
-    { status: 'Confirmed' },
+    { _id: req.params.walkId },
+    { status: 'Confirmed', walker: req.user },
   )
     .then(res => res.status(200).json(res))
     .catch(err => res.status(400).json(err));
