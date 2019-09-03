@@ -5,6 +5,7 @@ const nodemailer = require('nodemailer');
 const router = express.Router();
 const Walks = require('../models/Walks');
 const User = require('../models/User');
+const Dogs = require('../models/Dog');
 
 const transporter = nodemailer.createTransport({
   host: 'smtp.mailtrap.io',
@@ -24,14 +25,15 @@ const transporter = nodemailer.createTransport({
 // List All Walks
 router.get('/walks', (req, res) => {
   Walks.find()
-    .populate('walker owner')
-    .then(walks => res.json(walks))
-    .catch(err => res.json(err));
+    .populate('walker owner dogs')
+    .then((walks) => res.json(walks))
+    .catch((err) => res.json(err));
 });
 
 // Create a Walk
 router.post('/create-walk', (req, res) => {
-  const { type, duration, days, time, address } = req.body;
+  const { type, duration, days, time, address, dogs } = req.body;
+
   const newWalk = new Walks({
     type,
     duration,
@@ -39,23 +41,25 @@ router.post('/create-walk', (req, res) => {
     time,
     address,
     status: 'Pending',
+    dogs,
     owner: req.user,
   });
 
-  newWalk.save()
-    .then(() => {
-      let email = [];
-
-      User.findByIdAndUpdate(req.user.id, { $push: { walks: newWalk } })
-        .then(res => res.status(200).json(res))
-        .catch(err => res.status(400).json(err));
+  newWalk
+    .save()
+    .then((walk) => {
+      const email = [];
+      User.findByIdAndUpdate(req.user.id, { $push: { walks: walk } })
+        .then((user) => res.status(200).json(user))
+        .catch((err) => res.status(400).json(err));
 
       User.find({ role: 'Walker' })
-        .then(res => {
-          res.map(el => {
-            email.push(el.email);
+        .then((walker) => {
+          walker.map((el) => {
+            return email.push(el.email);
           });
-          email.forEach(el => {
+
+          email.forEach((el) => {
             transporter.sendMail({
               from: '"DogHero" <teste@email.com>',
               to: el,
@@ -65,11 +69,10 @@ router.post('/create-walk', (req, res) => {
               `,
             });
           });
-          return res.status(200).json(res);
         })
-        .catch(err => res.status(400).json(err));
+        .catch((err) => res.status(400).json(err));
     })
-    .catch(err => res.status(400).json(err));
+    .catch((err) => res.status(400).json(err));
 });
 
 router.put('/confirm/:walkId', (req, res) => {
@@ -77,8 +80,8 @@ router.put('/confirm/:walkId', (req, res) => {
     { _id: req.params.walkId },
     { status: 'Confirmed', walker: req.user },
   )
-    .then(res => res.status(200).json(res))
-    .catch(err => res.status(400).json(err));
+    .then((res) => res.status(200).json(res))
+    .catch((err) => res.status(400).json(err));
 });
 
 // Delete Walk
@@ -98,9 +101,9 @@ router.delete('/del-walk/:walkId', (req, res) => {
             message: `Pet with id ${req.params.walkId} was removed successfully.`,
           });
         })
-        .catch(err => res.json(err));
+        .catch((err) => res.json(err));
     })
-    .catch(err => {
+    .catch((err) => {
       res.json(err);
     });
 });

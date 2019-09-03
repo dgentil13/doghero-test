@@ -11,6 +11,7 @@ const dogSchema = new Schema(
     age: { type: String },
     size: { type: String },
     additionalInfo: { type: String },
+    activeWalk: { type: Boolean },
     owner: [{ type: Schema.Types.ObjectId, ref: 'User' }],
   },
   {

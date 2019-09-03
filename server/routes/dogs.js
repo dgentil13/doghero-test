@@ -26,12 +26,15 @@ router.post('/add-pet', (req, res) => {
     additionalInfo,
     picture,
     owner: req.user,
+    activeWalk: true,
   });
 
-  newDog.save()
-  .then(() => {
-      User.findByIdAndUpdate(req.user.id, { $push: { dogs: newDog } })
-      .then(res => res.status(200).json(res)).catch(err => res.status(400).json(err));
+  newDog
+    .save()
+    .then(dog => {
+      User.findByIdAndUpdate(req.user.id, { $push: { dogs: dog } })
+        .then(user => res.status(200).json(user))
+        .catch(err => res.status(400).json(err));
     })
     .catch(err => res.status(400).json(err));
 });
@@ -51,6 +54,34 @@ router.put('/edit-pet/:petId', (req, res) => {
     .then(() => {
       Dogs.findByIdAndUpdate(req.params.petId, {
         $set: { name, gender, race, age, size, additionalInfo, picture },
+      })
+        .then(() => {
+          res.status(200).json({
+            message: `Pet with id ${req.user.id} was updated successfully.`,
+          });
+        })
+        .catch(err => res.json(err));
+    })
+    .catch(err => {
+      res.json(err);
+    });
+});
+
+// Edit Pet Info
+router.put('/active/:petId', (req, res) => {
+  if (!mongoose.Types.ObjectId.isValid(req.params.petId)) {
+    res.status(400).json({ message: 'Specified id is not valid' });
+    return;
+  }
+
+  const { activeWalk } = req.body;
+
+  User.findByIdAndUpdate(req.user.id, {
+    $set: { dogs: req.params.petId },
+  })
+    .then(() => {
+      Dogs.findByIdAndUpdate(req.params.petId, {
+        $set: { activeWalk },
       })
         .then(() => {
           res.status(200).json({
