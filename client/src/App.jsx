@@ -10,6 +10,8 @@ import Home from './components/home/Home';
 import Pets from './components/pets/Pets';
 import Navbar from './components/navbar/Navbar';
 import Profile from './components/user/Profile';
+import ScheduleWalk from './components/walks/ScheduleWalk';
+import Footer from './components/footer/Footer';
 
 const App = () => {
   const service = new AuthService();
@@ -53,12 +55,19 @@ const App = () => {
             path='/pets'
             render={() => <Pets getUser={getTheUser} />}
           />
-           <Route
+          <Route
             exact
             path='/profile'
             render={() => <Profile getUser={getTheUser} />}
           />
+          <Route
+            exact
+            path='/walks'
+            render={() => <ScheduleWalk getUser={getTheUser} />}
+          />
         </Switch>
+
+        <Footer />
       </div>
     );
   } else {
@@ -83,6 +92,7 @@ const App = () => {
           />
           <Route exact path='/' render={() => <Home getUser={getTheUser} />} />
         </Switch>
+        <Footer />
       </div>
     );
   }

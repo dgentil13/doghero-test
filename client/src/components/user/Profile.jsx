@@ -1,7 +1,7 @@
 import React, { useEffect, useState, Fragment } from 'react';
 import axios from 'axios';
-import Form from './form/Form'
-const Profile = ({getUser }) => {
+import Form from './form/Form';
+const Profile = ({ getUser }) => {
   const [user, setUser] = useState({
     fullName: '',
     address: '',
@@ -26,17 +26,19 @@ const Profile = ({getUser }) => {
   const submitHandler = e => {
     e.preventDefault();
     const { fullName, address, number } = user;
-    axios.put(
+    axios
+      .put(
         `http://localhost:8000/api/user-edit`,
         { fullName, address, number },
         {
           withCredentials: true,
         },
-      ).then(() => {
+      )
+      .then(() => {
         getUserInfo();
       })
       .catch(err => {
-       console.log(err)
+        console.log(err);
       });
   };
 
@@ -51,7 +53,11 @@ const Profile = ({getUser }) => {
   return (
     <Fragment>
       <section>
-       <Form handleSubmit={submitHandler} handleChange={changeHandler} userInfo={user}/>
+        <Form
+          handleSubmit={submitHandler}
+          handleChange={changeHandler}
+          userInfo={user}
+        />
       </section>
     </Fragment>
   );

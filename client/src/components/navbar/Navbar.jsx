@@ -27,9 +27,17 @@ const Navbar = ({ userIsLogged, handleRole, getUser }) => {
           </h4>
         </div>
         <ul>
-          <li>Schedule Walk</li>
           <li>
-          <Link
+            <Link
+              to={{
+                pathname: '/walks',
+              }}
+            >
+              Schedule Walk
+            </Link>
+          </li>
+          <li>
+            <Link
               to={{
                 pathname: '/profile',
               }}

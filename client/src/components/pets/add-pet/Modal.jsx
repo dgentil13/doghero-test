@@ -2,7 +2,7 @@ import React, { useEffect, useState, Fragment } from 'react';
 import axios from 'axios';
 
 const Modal = ({ handleSubmit, handleChange, dogInfo }) => {
-  console.log(dogInfo)
+  console.log(dogInfo);
   return (
     <Fragment>
       <form onSubmit={e => handleSubmit(e)}>
@@ -20,7 +20,6 @@ const Modal = ({ handleSubmit, handleChange, dogInfo }) => {
           type='text'
           name='race'
           value={dogInfo.race}
-
           placeholder='Race'
           onChange={handleChange}
         />
@@ -30,7 +29,6 @@ const Modal = ({ handleSubmit, handleChange, dogInfo }) => {
           type='text'
           name='age'
           value={dogInfo.age}
-
           placeholder='Age'
           onChange={handleChange}
         />
@@ -40,7 +38,6 @@ const Modal = ({ handleSubmit, handleChange, dogInfo }) => {
           type='text'
           name='size'
           value={dogInfo.size}
-
           placeholder='Size'
           onChange={handleChange}
         />
@@ -51,7 +48,6 @@ const Modal = ({ handleSubmit, handleChange, dogInfo }) => {
           name='additionalInfo'
           placeholder='Important information'
           value={dogInfo.additionalInfo}
-
           onChange={handleChange}
         />
         <br />
@@ -61,10 +57,18 @@ const Modal = ({ handleSubmit, handleChange, dogInfo }) => {
           type='text'
           name='gender'
           value={dogInfo.gender}
-
           placeholder='Gender'
           onChange={handleChange}
         />
+        <br />
+        {/* <button
+          onClick={handleActive}
+          value={dogInfo.activeWalk}
+          name='activeWalk'
+          type='text'
+        >
+          Active
+        </button> */}
         <br />
         <button type='submit'>Submit</button>
       </form>

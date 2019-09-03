@@ -19,18 +19,19 @@ const Pets = ({ getUser }) => {
     getDogs();
   }, []);
 
+  // Get Dog List
   const getDogs = () => {
     axios
       .get(`http://localhost:8000/api/dogs`, {
         withCredentials: true,
       })
       .then(res => {
-        console.log('dogs', res.data);
         setDogList(res.data);
       })
       .catch(err => console.log(err));
   };
 
+  // Delete Pet
   const delPets = petId => {
     axios
       .delete(`http://localhost:8000/api/del-pet/${petId}`, {
@@ -42,20 +43,24 @@ const Pets = ({ getUser }) => {
       .catch(err => console.log(err));
   };
 
+  // Displays Modal for Pet Creation
   const handleModal = () => {
     setModal(true);
   };
 
+  // Handler form submit
   const submitHandler = e => {
     e.preventDefault();
     const { name, gender, race, age, size, additionalInfo } = dogs;
-    axios.post(
+    axios
+      .post(
         `http://localhost:8000/api/add-pet`,
         { name, gender, race, age, size, additionalInfo },
         {
           withCredentials: true,
         },
-      ).then(() => {
+      )
+      .then(() => {
         setDogs({
           name: '',
           gender: '',
@@ -78,6 +83,7 @@ const Pets = ({ getUser }) => {
     getDogs();
   };
 
+  // Handles input change
   const changeHandler = e => {
     const { name, value } = e.target;
     setDogs({
@@ -85,7 +91,7 @@ const Pets = ({ getUser }) => {
       [name]: value,
     });
   };
-  
+
   return (
     <Fragment>
       <section>
@@ -96,7 +102,11 @@ const Pets = ({ getUser }) => {
           <button onClick={handleModal}>Add Pet</button>
         </div>
         {modal ? (
-          <Modal handleSubmit={submitHandler} handleChange={changeHandler} dogInfo={dogs} />
+          <Modal
+            handleSubmit={submitHandler}
+            handleChange={changeHandler}
+            dogInfo={dogs}
+          />
         ) : null}
       </section>
     </Fragment>
