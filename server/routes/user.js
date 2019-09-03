@@ -25,20 +25,6 @@ router.put('/user-edit', (req, res) => {
     .catch(err => res.json(err));
 });
 
-// Edit Walker Info
-// router.put('/walker-edit', (req, res) => {
-//   const { fullName, number, address, image } = req.body;
-//   User.findByIdAndUpdate(req.walker.id, {
-//     $set: { fullName, number, address, profileImg: image },
-//   })
-//     .then(() => {
-//       res.status(200).json({
-//         message: `Walker with id ${req.walker.id} was updated successfully.`,
-//       });
-//     })
-//     .catch(err => res.json(err));
-// });
-
 // Edit profile picture
 router.put('/user-picture', (req, res) => {
   const { image } = req.body;

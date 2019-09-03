@@ -32,13 +32,6 @@ router.get('/walks', (req, res) => {
 // Create a Walk
 router.post('/create-walk', (req, res) => {
   const { type, duration, days, time, address } = req.body;
-  // const characters =
-  //   '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
-  // let token = '';
-  // for (let i = 0; i < 25; i++) {
-  //   token += characters[Math.floor(Math.random() * characters.length)];
-  // }
-  // const confirmationCode = token;
   const newWalk = new Walks({
     type,
     duration,
@@ -47,7 +40,6 @@ router.post('/create-walk', (req, res) => {
     address,
     status: 'Pending',
     owner: req.user,
-    // confirmationCode,
   });
 
   newWalk
@@ -64,10 +56,7 @@ router.post('/create-walk', (req, res) => {
           res.map(el => {
             email.push(el.email);
           });
-          // console.log('walkers:', email);
-          // console.log('newWalk:', newWalk.owner);
           email.forEach(el => {
-            // console.log('WHATS THIS', el);
             transporter.sendMail({
               from: '"DogHero" <teste@email.com>',
               to: el,
@@ -83,22 +72,6 @@ router.post('/create-walk', (req, res) => {
     })
     .catch(err => res.status(400).json(err));
 });
-
-// router.get('/confirm/:confirmNum', (req, res) => {
-//   Walks.find(
-//     { confirmationCode: req.params.confirmNum },
-//     { status: 'Confirmed' },
-//   )
-//     .then(console.log('ta confirmado ja'))
-//     .catch(
-//       Walks.findOneAndUpdate(
-//         { confirmationCode: req.params.confirmNum },
-//         { status: 'Confirmed' },
-//       )
-//         .then(res => res.status(200).json(res))
-//         .catch(err => res.status(400).json(err)),
-//     );
-// });
 
 router.put('/confirm/:walkId', (req, res) => {
   Walks.findOneAndUpdate(
