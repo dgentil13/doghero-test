@@ -12,7 +12,6 @@ const Navbar = ({ userIsLogged, handleRole, getUser }) => {
     });
   };
 
-  console.log('nav', userIsLogged);
   if (userIsLogged) {
     return (
       <nav>
@@ -22,7 +21,6 @@ const Navbar = ({ userIsLogged, handleRole, getUser }) => {
               to={{
                 pathname: '/',
               }}
-              onClick={role => handleRole('Walker')}
             >
               PupLove
             </Link>
@@ -30,8 +28,24 @@ const Navbar = ({ userIsLogged, handleRole, getUser }) => {
         </div>
         <ul>
           <li>Schedule Walk</li>
-          <li>Profile</li>
-          <li>Add Pet</li>
+          <li>
+          <Link
+              to={{
+                pathname: '/profile',
+              }}
+            >
+              Profile
+            </Link>
+          </li>
+          <li>
+            <Link
+              to={{
+                pathname: '/pets',
+              }}
+            >
+              Pets
+            </Link>
+          </li>
           <li>
             <Link to='/' onClick={logoutUser}>
               Logout
@@ -49,7 +63,6 @@ const Navbar = ({ userIsLogged, handleRole, getUser }) => {
               to={{
                 pathname: '/',
               }}
-              onClick={role => handleRole('Walker')}
             >
               PupLove
             </Link>

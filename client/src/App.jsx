@@ -7,7 +7,9 @@ import AuthService from './components/auth/service/auth-service';
 import SignUp from './components/auth/signup/SignUp';
 import Login from './components/auth/login/Login';
 import Home from './components/home/Home';
+import Pets from './components/pets/Pets';
 import Navbar from './components/navbar/Navbar';
+import Profile from './components/user/Profile';
 
 const App = () => {
   const service = new AuthService();
@@ -19,7 +21,7 @@ const App = () => {
       service
         .loggedin()
         .then(res => {
-          setLoggedInUser(null);
+          setLoggedInUser(res);
         })
         .catch(err => {
           setLoggedInUser(false);
@@ -34,7 +36,6 @@ const App = () => {
   const handleRole = role => {
     setRole(role);
   };
-  console.log('log', loggedInUser);
 
   if (loggedInUser) {
     return (
@@ -47,6 +48,16 @@ const App = () => {
         />
         <Switch>
           <Route exact path='/' render={() => <Home getUser={getTheUser} />} />
+          <Route
+            exact
+            path='/pets'
+            render={() => <Pets getUser={getTheUser} />}
+          />
+           <Route
+            exact
+            path='/profile'
+            render={() => <Profile getUser={getTheUser} />}
+          />
         </Switch>
       </div>
     );

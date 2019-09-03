@@ -28,12 +28,10 @@ router.post('/add-pet', (req, res) => {
     owner: req.user,
   });
 
-  newDog
-    .save()
-    .then(() => {
+  newDog.save()
+  .then(() => {
       User.findByIdAndUpdate(req.user.id, { $push: { dogs: newDog } })
-        .then(res => res.status(200).json(res))
-        .catch(err => res.status(400).json(err));
+      .then(res => res.status(200).json(res)).catch(err => res.status(400).json(err));
     })
     .catch(err => res.status(400).json(err));
 });

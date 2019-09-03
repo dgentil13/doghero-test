@@ -6,9 +6,9 @@ const dogSchema = new Schema(
   {
     name: { type: String, required: true },
     gender: { type: String },
-    picture: { type: String, default: '' },
+    // picture: { type: String, default: '' },
     race: { type: String },
-    age: { type: Number },
+    age: { type: String },
     size: { type: String },
     additionalInfo: { type: String },
     owner: [{ type: Schema.Types.ObjectId, ref: 'User' }],

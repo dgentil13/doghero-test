@@ -42,8 +42,7 @@ router.post('/create-walk', (req, res) => {
     owner: req.user,
   });
 
-  newWalk
-    .save()
+  newWalk.save()
     .then(() => {
       let email = [];
 

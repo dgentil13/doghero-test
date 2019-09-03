@@ -14,15 +14,12 @@ const Login = ({ getUser }) => {
   // const [redirect, setRedirect] = useState(false);
 
   const submitHandler = e => {
-    console.log('entrou');
     e.preventDefault();
     const { email, password } = inputs;
-    console.log(inputs);
 
     service
       .login(email, password)
       .then(res => {
-        console.log('deu');
         setInputs({
           email: '',
           password: '',
@@ -32,27 +29,19 @@ const Login = ({ getUser }) => {
         //callback redirect?
       })
       .catch(err => {
-        console.log('nao deu');
         setError(true);
       });
   };
 
   const changeHandler = e => {
     const { name, value } = e.target;
-    console.log(value);
     setInputs({
       ...inputs,
       [name]: value,
     });
   };
 
-  return (
-    <Form
-      handleChange={changeHandler}
-      handleSubmit={submitHandler}
-      info={inputs}
-    />
-  );
+  return <Form handleChange={changeHandler} handleSubmit={submitHandler} />;
 };
 
 export default Login;
