@@ -1,12 +1,33 @@
 import React, { Fragment } from 'react';
+import { Link } from 'react-router-dom';
 
-const Home = () => {
+const Home = ({ userIsLogged }) => {
   return (
     <Fragment>
       <header className='front-header'>
         <div className='main'>
           <p>We walk while you work!</p>
-          <button>Try it Out</button>
+          {userIsLogged ? (
+            <button>
+              <Link
+                to={{
+                  pathname: '/walks',
+                }}
+              >
+                Let's Walk!
+              </Link>
+            </button>
+          ) : (
+            <button>
+              <Link
+                to={{
+                  pathname: '/signup',
+                }}
+              >
+                Try it out!
+              </Link>
+            </button>
+          )}
         </div>
       </header>
       <section className='about'>

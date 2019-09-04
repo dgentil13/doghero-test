@@ -94,6 +94,7 @@ const Pets = ({ getUser }) => {
     });
   };
 
+  console.log(dogList);
   return (
     <Fragment>
       <section className='pets'>
@@ -112,12 +113,15 @@ const Pets = ({ getUser }) => {
               <img src='/images/plus-solid.svg' />
             </button>
           </div>
-
-          <div className='card-box'>
-            {dogList.map((dog, idx) => {
-              return <Card key={idx} dogInfo={dog} delPet={delPets} />;
-            })}
-          </div>
+          {dogList.length > 0 ? (
+            <div className='card-box'>
+              {dogList.map((dog, idx) => {
+                return <Card key={idx} dogInfo={dog} delPet={delPets} />;
+              })}
+            </div>
+          ) : (
+            <p className='no-dog'>You have no Pets yet! </p>
+          )}
         </div>
       </section>
     </Fragment>

@@ -49,7 +49,11 @@ const App = () => {
           userIsLogged={loggedInUser}
         />
         <Switch>
-          <Route exact path='/' render={() => <Home getUser={getTheUser} />} />
+          <Route
+            exact
+            path='/'
+            render={() => <Home userIsLogged={loggedInUser} />}
+          />
           <Route
             exact
             path='/pets'

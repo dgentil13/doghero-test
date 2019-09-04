@@ -9,6 +9,15 @@
   height: 70vh;
   z-index: 1;
   background-color: white;
+  box-shadow: 0px 4px 8px rgba(38, 38, 38, 0.24);
+  select,
+  textarea {
+    background-color: white;
+    width: 30%;
+    height: 2.5rem;
+    font-size: 1rem;
+    max-height: 5rem;
+  }
 }
 
 .close {
@@ -21,6 +30,9 @@
   background-color: #ffeceb;
   &:focus {
     outline: none;
+  }
+  &:hover {
+    background-color: lightgrey;
   }
   img {
     width: 20px;

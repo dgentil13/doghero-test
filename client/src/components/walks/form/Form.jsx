@@ -4,7 +4,6 @@ const Form = ({ handleChange, handleSubmit, activeHandler, dogs, walks }) => {
   return (
     <Fragment>
       <form onSubmit={handleSubmit}>
-        <label> address:</label>
         <input
           type='text'
           name='address'
@@ -12,49 +11,57 @@ const Form = ({ handleChange, handleSubmit, activeHandler, dogs, walks }) => {
           placeholder='Please enter your address.'
           onChange={handleChange}
         />
-        {dogs.map((dog, idx) => {
-          return (
-            <div ket={idx}>
-              {dog.name}
-              <button onClick={e => activeHandler(e, dog._id)}>
-                {dog.activeWalk ? 'Active' : 'Not active'}
-              </button>
-            </div>
-          );
-        })}
-        <label> Type:</label>
-        <input
-          type='text'
-          name='type'
-          value={walks.type}
-          onChange={handleChange}
-        />
-        <label> Duration:</label>
-        <input
-          type='text'
-          name='duration'
-          value={walks.duration}
-          placeholder='Please enter your Password.'
-          onChange={handleChange}
-        />
-        <label> Days:</label>
-        <input
-          type='text'
-          name='days'
-          value={walks.days}
-          placeholder='Please enter your Number.'
-          onChange={handleChange}
-        />
-        <label> Time:</label>
+        <h4> Who's going on the walk?</h4>
+        <div className='box-walk'>
+          {dogs.length > 0 ? (
+            dogs.map((dog, idx) => {
+              return (
+                <div key={idx} className='card-walk'>
+                  {dog.name}
+                  <button
+                    className='active-pet'
+                    onClick={e => activeHandler(e, dog._id)}
+                  >
+                    {dog.activeWalk ? (
+                      <img src='/images/leash.svg' />
+                    ) : (
+                      <img src='/images/leash-empty.svg' />
+                    )}
+                  </button>
+                </div>
+              );
+            })
+          ) : (
+            <p className='no-dog'> Add a Pet in you Pets page!</p>
+          )}
+        </div>
+
+        <select name='duration' onChange={handleChange}>
+          <option>Duration</option>
+          <option value='30 min.'>30 min.</option>
+          <option value='1 hour'>1 hour</option>
+        </select>
+
+        <select name='days' onChange={handleChange}>
+          <option>Day of the Week</option>
+          <option value='Monday'>Monday</option>
+          <option value='Tuesday'>Tuesday</option>
+          <option value='Wednesday'>Wednesday</option>
+          <option value='Thrusday'>Thrusday</option>
+          <option value='Friday'>Friday</option>
+          <option value='Saturday'>Saturday</option>
+          <option value='Sunday'>Sunday</option>
+        </select>
+
         <input
           type='text'
           name='time'
           value={walks.time}
-          placeholder='Please enter your Number.'
+          placeholder='Please enter the time. ex: 10am'
           onChange={handleChange}
         />
 
-        <button type='submit'>Submit</button>
+        <button type='submit'>Walk!</button>
       </form>
     </Fragment>
   );

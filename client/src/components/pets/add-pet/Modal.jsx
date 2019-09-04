@@ -9,7 +9,6 @@ const Modal = ({ handleSubmit, handleChange, handleModal, dogInfo }) => {
         <button className='close' onClick={handleModal}>
           <img src='/images/times-solid.svg' />
         </button>
-        <label>Pet Name:</label>
         <input
           type='text'
           name='name'
@@ -18,7 +17,6 @@ const Modal = ({ handleSubmit, handleChange, handleModal, dogInfo }) => {
           onChange={handleChange}
         />
         <br />
-        <label>Race:</label>
         <input
           type='text'
           name='race'
@@ -27,7 +25,14 @@ const Modal = ({ handleSubmit, handleChange, handleModal, dogInfo }) => {
           onChange={handleChange}
         />
         <br />
-        <label>Age:</label>
+        {/* make a component? */}
+        <select name='gender' onChange={handleChange}>
+          <option>Gender</option>
+          <option value='Female'>Female</option>
+          <option value='Male'>Male</option>
+        </select>
+        <br />
+
         <input
           type='text'
           name='age'
@@ -36,31 +41,20 @@ const Modal = ({ handleSubmit, handleChange, handleModal, dogInfo }) => {
           onChange={handleChange}
         />
         <br />
-        <label>Size</label>
         <input
           type='text'
           name='size'
           value={dogInfo.size}
-          placeholder='Size'
+          placeholder='Size, ex: Small'
           onChange={handleChange}
         />
         <br />
         <label>Additional Information:</label>
-        <input
+        <textarea
           type='text'
           name='additionalInfo'
           placeholder='Important information'
           value={dogInfo.additionalInfo}
-          onChange={handleChange}
-        />
-        <br />
-        <label>Gender:</label>
-        {/* make a component? */}
-        <input
-          type='text'
-          name='gender'
-          value={dogInfo.gender}
-          placeholder='Gender'
           onChange={handleChange}
         />
         <br />

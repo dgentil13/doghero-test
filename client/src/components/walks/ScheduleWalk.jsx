@@ -6,7 +6,6 @@ const ScheduleWalk = () => {
   const [activeWalk, setActiveWalk] = useState(true);
   const [dogList, setDogList] = useState([]);
   const [walks, setWalks] = useState({
-    type: '',
     duration: '',
     address: '',
     days: '',
@@ -56,7 +55,7 @@ const ScheduleWalk = () => {
   // Handler form submit
   const submitHandler = e => {
     e.preventDefault();
-    const { type, duration, days, time, address } = walks;
+    const { duration, days, time, address } = walks;
     const dogs = dogList.filter(dog => {
       return dog.activeWalk === true;
     });
@@ -64,13 +63,13 @@ const ScheduleWalk = () => {
     axios
       .post(
         `http://localhost:8000/api/create-walk`,
-        { type, duration, days, time, address, dogs },
+        { duration, days, time, address, dogs },
         {
           withCredentials: true,
         },
-      ).then(() => {
+      )
+      .then(() => {
         setWalks({
-          type: '',
           duration: '',
           address: '',
           days: '',
@@ -93,14 +92,18 @@ const ScheduleWalk = () => {
   };
   return (
     <Fragment>
-      <p> walks</p>
-      <Form
-        dogs={dogList}
-        walks={walks}
-        activeHandler={activeHandler}
-        handleSubmit={submitHandler}
-        handleChange={changeHandler}
-      />
+      <section className='walks'>
+        <div className='main-walk'>
+          <h1> Let's take a walk!</h1>
+          <Form
+            dogs={dogList}
+            walks={walks}
+            activeHandler={activeHandler}
+            handleSubmit={submitHandler}
+            handleChange={changeHandler}
+          />
+        </div>
+      </section>
     </Fragment>
   );
 };

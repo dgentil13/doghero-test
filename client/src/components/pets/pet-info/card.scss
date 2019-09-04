@@ -1,9 +1,9 @@
 .card {
   @include flexCenter(space-between);
   height: auto;
-  width: 50vh;
+  width: 30vh;
   height: 15vh;
-  padding: 15px;
+  padding: 20px;
   margin-bottom: 2rem;
   border: 1px solid black;
   margin: 2rem;
@@ -24,5 +24,29 @@
   p {
     text-transform: uppercase;
     font-weight: 500;
+  }
+}
+
+.dog-card {
+  display: flex;
+  flex-direction: row;
+  img {
+    width: 60px;
+    padding-right: 20px;
+  }
+}
+
+.delete-pet {
+  border: 0px;
+  border-radius: 100%;
+  height: 50px;
+  width: 50px;
+  background-color: #ffeceb;
+  &:focus {
+    outline: none;
+  }
+  img {
+    width: 20px;
+    padding: 10px;
   }
 }

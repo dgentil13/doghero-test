@@ -23,10 +23,16 @@
     text-transform: uppercase;
     font-size: 1rem;
     letter-spacing: 1px;
-    color: white;
     border: 0px;
     padding: 15px 35px;
     border-radius: 50px;
+    &:focus {
+      outline: none;
+    }
+    a {
+      text-decoration: none;
+      color: white;
+    }
   }
 }
 
@@ -34,7 +40,7 @@
   @include flexCenter(space-around);
   background-color: #fffafa;
   height: 40vh;
-  padding: 2rem 15rem;
+  padding: 2rem 15rem 10rem 15rem;
 
   div {
     @include flexCenter(center);
@@ -43,6 +49,7 @@
     p {
       text-align: center;
       width: 70%;
+      font-size: 1.2rem;
       font-weight: 500;
     }
   }

@@ -27,7 +27,7 @@ const Form = ({ handleChange, handleSubmit, role }) => {
         <input
           type='text'
           name='number'
-          placeholder='Please enter your Number.'
+          placeholder='Please enter your Phone number.'
           onChange={handleChange}
         />
         {role === 'Walker' ? (
