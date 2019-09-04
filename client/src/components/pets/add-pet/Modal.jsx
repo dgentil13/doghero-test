@@ -1,11 +1,14 @@
 import React, { useEffect, useState, Fragment } from 'react';
 import axios from 'axios';
 
-const Modal = ({ handleSubmit, handleChange, dogInfo }) => {
+const Modal = ({ handleSubmit, handleChange, handleModal, dogInfo }) => {
   console.log(dogInfo);
   return (
     <Fragment>
-      <form onSubmit={e => handleSubmit(e)}>
+      <form className='modal' onSubmit={e => handleSubmit(e)}>
+        <button className='close' onClick={handleModal}>
+          <img src='/images/times-solid.svg' />
+        </button>
         <label>Pet Name:</label>
         <input
           type='text'
@@ -61,16 +64,8 @@ const Modal = ({ handleSubmit, handleChange, dogInfo }) => {
           onChange={handleChange}
         />
         <br />
-        {/* <button
-          onClick={handleActive}
-          value={dogInfo.activeWalk}
-          name='activeWalk'
-          type='text'
-        >
-          Active
-        </button> */}
-        <br />
-        <button type='submit'>Submit</button>
+
+        <button type='submit'>Add Pet</button>
       </form>
     </Fragment>
   );

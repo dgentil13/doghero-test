@@ -48,13 +48,16 @@ const SignUp = props => {
       [name]: value,
     });
   };
-  console.log('teste', props);
   return (
-    <Form
-      handleChange={changeHandler}
-      handleSubmit={submitHandler}
-      role={props.state}
-    />
+    <section className='auth'>
+      <div className='form-auth'>
+        <Form
+          handleChange={changeHandler}
+          handleSubmit={submitHandler}
+          role={props.state}
+        />
+      </div>
+    </section>
   );
 };
 

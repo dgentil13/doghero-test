@@ -1,0 +1,29 @@
+.modal {
+  padding: 3rem 0;
+  top: 10%;
+  left: 25%;
+  overflow: hidden;
+  overflow-y: auto;
+  position: fixed;
+  width: 50%;
+  height: 70vh;
+  z-index: 1;
+  background-color: white;
+}
+
+.close {
+  position: absolute;
+  top: 0;
+  right: 10%;
+  border-radius: 100%;
+  height: 50px;
+  width: 50px;
+  background-color: #ffeceb;
+  &:focus {
+    outline: none;
+  }
+  img {
+    width: 20px;
+    padding: 10px;
+  }
+}

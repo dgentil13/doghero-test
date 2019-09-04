@@ -40,8 +40,13 @@ const Login = ({ getUser }) => {
       [name]: value,
     });
   };
-
-  return <Form handleChange={changeHandler} handleSubmit={submitHandler} />;
+  return (
+    <section className='auth'>
+      <div className='form-auth'>
+        <Form handleChange={changeHandler} handleSubmit={submitHandler} />
+      </div>
+    </section>
+  );
 };
 
 export default Login;

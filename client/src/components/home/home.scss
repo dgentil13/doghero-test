@@ -1,0 +1,49 @@
+.front-header {
+  background-image: url('/images/dogwalker.png');
+  background-repeat: no-repeat;
+  background-position: 800px 0px;
+  background-color: #ffeceb;
+  height: 65vh;
+}
+
+.main {
+  @include flexCenter(center);
+  flex-direction: column;
+  width: 50%;
+  height: 100%;
+
+  p {
+    font-size: 2.3rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+  }
+  button {
+    background-color: #000000;
+    text-transform: uppercase;
+    font-size: 1rem;
+    letter-spacing: 1px;
+    color: white;
+    border: 0px;
+    padding: 15px 35px;
+    border-radius: 50px;
+  }
+}
+
+.about {
+  @include flexCenter(space-around);
+  background-color: #fffafa;
+  height: 40vh;
+  padding: 2rem 15rem;
+
+  div {
+    @include flexCenter(center);
+    flex-direction: column;
+
+    p {
+      text-align: center;
+      width: 70%;
+      font-weight: 500;
+    }
+  }
+}

@@ -87,14 +87,17 @@ const Navbar = ({ userIsLogged, handleRole, getUser }) => {
               Be a Walker!
             </Link>
           </li>
-          <Link
-            to={{
-              pathname: '/signup',
-            }}
-            onClick={role => handleRole('Client')}
-          >
-            SignUp
-          </Link>
+          <li>
+            <Link
+              to={{
+                pathname: '/signup',
+              }}
+              onClick={role => handleRole('Client')}
+            >
+              SignUp
+            </Link>
+          </li>
+
           <li>
             <Link
               to={{

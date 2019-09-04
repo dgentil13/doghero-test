@@ -17,7 +17,8 @@ const Pets = ({ getUser }) => {
 
   useEffect(() => {
     getDogs();
-  }, []);
+    console.log('oh no');
+  }, [modal]);
 
   // Get Dog List
   const getDogs = () => {
@@ -45,7 +46,7 @@ const Pets = ({ getUser }) => {
 
   // Displays Modal for Pet Creation
   const handleModal = () => {
-    setModal(true);
+    setModal(!modal);
   };
 
   // Handler form submit
@@ -81,6 +82,7 @@ const Pets = ({ getUser }) => {
         });
       });
     getDogs();
+    handleModal();
   };
 
   // Handles input change
@@ -94,20 +96,29 @@ const Pets = ({ getUser }) => {
 
   return (
     <Fragment>
-      <section>
-        {dogList.map((dog, idx) => {
-          return <Card key={idx} dogInfo={dog} delPet={delPets} />;
-        })}
-        <div>
-          <button onClick={handleModal}>Add Pet</button>
-        </div>
+      <section className='pets'>
         {modal ? (
           <Modal
+            handleModal={handleModal}
             handleSubmit={submitHandler}
             handleChange={changeHandler}
             dogInfo={dogs}
           />
         ) : null}
+        <div className='main-content'>
+          <div className='header-pets'>
+            <h1> My Pets</h1>
+            <button onClick={handleModal}>
+              <img src='/images/plus-solid.svg' />
+            </button>
+          </div>
+
+          <div className='card-box'>
+            {dogList.map((dog, idx) => {
+              return <Card key={idx} dogInfo={dog} delPet={delPets} />;
+            })}
+          </div>
+        </div>
       </section>
     </Fragment>
   );

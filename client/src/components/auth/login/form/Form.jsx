@@ -3,22 +3,21 @@ import React, { Fragment } from 'react';
 const Form = ({ handleChange, handleSubmit, info }) => {
   return (
     <Fragment>
+      <h1>Login</h1>
       <form onSubmit={handleSubmit}>
-        <label> Email:</label>
         <input
           type='email'
           name='email'
           placeholder='Please enter your Email.'
           onChange={handleChange}
         />
-        <label> Password:</label>
         <input
           type='password'
           name='password'
           placeholder='Please enter your Password.'
           onChange={handleChange}
         />
-        <button type='submit'>Submit</button>
+        <button type='submit'>Enter</button>
       </form>
     </Fragment>
   );

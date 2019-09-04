@@ -1,0 +1,40 @@
+nav {
+  @include flexCenter(space-between);
+  background-color: transparent;
+  padding: 0px 30px;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  ul {
+    display: flex;
+    justify-content: center;
+    width: 40%;
+
+    li {
+      list-style: none;
+      text-transform: uppercase;
+      padding: 0px 2rem;
+
+      a {
+        text-decoration: none;
+        letter-spacing: 1px;
+        font-weight: bold;
+        color: #f7f1ef;
+      }
+    }
+  }
+}
+
+.logo {
+  h4 {
+    text-transform: uppercase;
+    letter-spacing: 5px;
+
+    a {
+      text-decoration: none;
+      letter-spacing: 1px;
+      font-weight: bold;
+      color: black;
+    }
+  }
+}

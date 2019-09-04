@@ -52,12 +52,15 @@ const Profile = ({ getUser }) => {
 
   return (
     <Fragment>
-      <section>
-        <Form
-          handleSubmit={submitHandler}
-          handleChange={changeHandler}
-          userInfo={user}
-        />
+      <section className='profile'>
+        <div>
+          <h1> My Profile</h1>
+          <Form
+            handleSubmit={submitHandler}
+            handleChange={changeHandler}
+            userInfo={user}
+          />
+        </div>
       </section>
     </Fragment>
   );
