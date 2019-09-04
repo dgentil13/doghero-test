@@ -14,7 +14,7 @@ const MongoStore = require('connect-mongo')(session);
 const flash = require('connect-flash');
 
 mongoose
-  .connect('mongodb://localhost/doghero-test', { useNewUrlParser: true })
+  .connect(process.env.MONGODB_URI, { useNewUrlParser: true })
   .then(x => {
     console.log(
       `Connected to Mongo! Database name: "${x.connections[0].name}"`,
@@ -74,5 +74,10 @@ app.use('/api', authRoutes);
 app.use('/api', userRoutes);
 app.use('/api', dogRoutes);
 app.use('/api', walkRoutes);
+
+app.use((req, res, next) => {
+  // If no routes match, send them the React HTML.
+  res.sendFile(`${__dirname}/public/index.html`);
+});
 
 module.exports = app;

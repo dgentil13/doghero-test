@@ -5,8 +5,8 @@ const nodemailer = require('nodemailer');
 const router = express.Router();
 const Walks = require('../models/Walks');
 const User = require('../models/User');
-const Dogs = require('../models/Dog');
 
+// Nodemailer config
 const transporter = nodemailer.createTransport({
   host: 'smtp.mailtrap.io',
   port: 2525,
@@ -14,12 +14,6 @@ const transporter = nodemailer.createTransport({
     user: 'a69684230ef027',
     pass: '2426cf604716d6',
   },
-
-  // service: 'gmail',
-  // auth: {
-  //   user: 'ahoydanni3@gmail.com',
-  //   pass: '',
-  // },
 });
 
 // List All Walks
@@ -30,7 +24,7 @@ router.get('/walks', (req, res) => {
     .catch(err => res.json(err));
 });
 
-// Create a Walk
+// Create a Walk and sends email to walkers
 router.post('/create-walk', (req, res) => {
   const { duration, days, time, address, dogs } = req.body;
 
@@ -74,6 +68,7 @@ router.post('/create-walk', (req, res) => {
     .catch(err => res.status(400).json(err));
 });
 
+// Route for changing status of walk from Pending to Confirmed
 router.put('/confirm/:walkId', (req, res) => {
   Walks.findOneAndUpdate(
     { _id: req.params.walkId },

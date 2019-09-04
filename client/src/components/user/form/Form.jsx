@@ -1,6 +1,6 @@
 import React, { Fragment } from 'react';
 
-const Modal = ({ handleSubmit, handleChange, userInfo }) => {
+const Form = ({ handleSubmit, handleChange, userInfo }) => {
   console.log(userInfo);
   return (
     <Fragment>
@@ -39,4 +39,4 @@ const Modal = ({ handleSubmit, handleChange, userInfo }) => {
   );
 };
 
-export default Modal;
+export default Form;
