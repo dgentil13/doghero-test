@@ -32,15 +32,15 @@ const Home = ({ userIsLogged }) => {
       </header>
       <section className='about'>
         <div>
-          <img src='/images/paw.png' />
+          <img src='/images/paw.png' alt='Paw' />
           <p>Take care of your four legged friend!</p>
         </div>
         <div>
-          <img src='/images/bone.png' />
+          <img src='/images/bone.png' alt='Bone' />
           <p>Helps your dog to socialize! </p>
         </div>
         <div>
-          <img src='/images/colar.png' />
+          <img src='/images/colar.png' alt='Colar' />
           <p>Trusted walkers to exercise your dog!</p>
         </div>
       </section>

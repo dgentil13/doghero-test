@@ -19,7 +19,7 @@ const ScheduleWalk = () => {
   // Get Dog List
   const getDogs = () => {
     axios
-      .get(`http://localhost:8000/api/dogs`, {
+      .get(`${process.env.REACT_APP_API_URL}/dogs`, {
         withCredentials: true,
       })
       .then(res => {
@@ -32,7 +32,7 @@ const ScheduleWalk = () => {
   const editActive = petId => {
     axios
       .put(
-        `http://localhost:8000/api/active/${petId}`,
+        `${process.env.REACT_APP_API_URL}/active/${petId}`,
         { activeWalk },
         {
           withCredentials: true,
@@ -59,10 +59,9 @@ const ScheduleWalk = () => {
     const dogs = dogList.filter(dog => {
       return dog.activeWalk === true;
     });
-
     axios
       .post(
-        `http://localhost:8000/api/create-walk`,
+        `${process.env.REACT_APP_API_URL}/create-walk`,
         { duration, days, time, address, dogs },
         {
           withCredentials: true,

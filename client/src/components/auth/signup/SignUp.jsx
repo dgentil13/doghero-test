@@ -1,6 +1,6 @@
-import React, { useState, Fragment } from 'react';
+import React, { useState } from 'react';
 import AuthService from '../service/auth-service';
-import { Link, Redirect } from 'react-router-dom';
+import { Redirect } from 'react-router-dom';
 
 //components
 import Form from './form/Form';
@@ -14,13 +14,12 @@ const SignUp = props => {
     fullName: '',
     address: '',
   });
-  const [error, setError] = useState(false);
-  // const [redirect, setRedirect] = useState(false);
+  const [redirect, setRedirect] = useState(false);
 
+  //Handle Submit from Signup
   const submitHandler = e => {
     e.preventDefault();
     const { email, password, number, fullName, address } = inputs;
-    console.log('role:', props);
     const role = props.state;
     service
       .signup(email, password, number, fullName, address, role)
@@ -32,15 +31,16 @@ const SignUp = props => {
           fullName: '',
           address: '',
         });
+
+        setRedirect(true);
         props.getUser(res);
-        //redirect: true?
-        //callback redirect?
       })
       .catch(err => {
-        setError(true);
+        console.log(err);
       });
   };
 
+  // Handle change of inputs
   const changeHandler = e => {
     const { name, value } = e.target;
     setInputs({
@@ -48,6 +48,11 @@ const SignUp = props => {
       [name]: value,
     });
   };
+
+  //redirect Page after login
+  if (redirect) {
+    return <Redirect to='/'></Redirect>;
+  }
   return (
     <section className='auth'>
       <div className='form-auth'>

@@ -17,13 +17,12 @@ const Pets = ({ getUser }) => {
 
   useEffect(() => {
     getDogs();
-    console.log('oh no');
   }, [modal]);
 
   // Get Dog List
   const getDogs = () => {
     axios
-      .get(`http://localhost:8000/api/dogs`, {
+      .get(`${process.env.REACT_APP_API_URL}/dogs`, {
         withCredentials: true,
       })
       .then(res => {
@@ -35,7 +34,7 @@ const Pets = ({ getUser }) => {
   // Delete Pet
   const delPets = petId => {
     axios
-      .delete(`http://localhost:8000/api/del-pet/${petId}`, {
+      .delete(`${process.env.REACT_APP_API_URL}/del-pet/${petId}`, {
         withCredentials: true,
       })
       .then(() => {
@@ -55,7 +54,7 @@ const Pets = ({ getUser }) => {
     const { name, gender, race, age, size, additionalInfo } = dogs;
     axios
       .post(
-        `http://localhost:8000/api/add-pet`,
+        `${process.env.REACT_APP_API_URL}/add-pet`,
         { name, gender, race, age, size, additionalInfo },
         {
           withCredentials: true,
@@ -94,7 +93,6 @@ const Pets = ({ getUser }) => {
     });
   };
 
-  console.log(dogList);
   return (
     <Fragment>
       <section className='pets'>
@@ -110,7 +108,7 @@ const Pets = ({ getUser }) => {
           <div className='header-pets'>
             <h1> My Pets</h1>
             <button onClick={handleModal}>
-              <img src='/images/plus-solid.svg' />
+              <img src='/images/plus-solid.svg' alt='Add' />
             </button>
           </div>
           {dogList.length > 0 ? (

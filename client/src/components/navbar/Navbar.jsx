@@ -6,6 +6,7 @@ import AuthService from '../auth/service/auth-service';
 const Navbar = ({ userIsLogged, handleRole, getUser }) => {
   const service = new AuthService();
 
+  //Logout
   const logoutUser = () => {
     service.logout().then(() => {
       getUser(null);

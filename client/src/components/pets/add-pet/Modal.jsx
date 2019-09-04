@@ -1,5 +1,4 @@
-import React, { useEffect, useState, Fragment } from 'react';
-import axios from 'axios';
+import React, { Fragment } from 'react';
 
 const Modal = ({ handleSubmit, handleChange, handleModal, dogInfo }) => {
   console.log(dogInfo);
@@ -7,7 +6,7 @@ const Modal = ({ handleSubmit, handleChange, handleModal, dogInfo }) => {
     <Fragment>
       <form className='modal' onSubmit={e => handleSubmit(e)}>
         <button className='close' onClick={handleModal}>
-          <img src='/images/times-solid.svg' />
+          <img src='/images/times-solid.svg' alt='Close' />
         </button>
         <input
           type='text'
@@ -25,7 +24,6 @@ const Modal = ({ handleSubmit, handleChange, handleModal, dogInfo }) => {
           onChange={handleChange}
         />
         <br />
-        {/* make a component? */}
         <select name='gender' onChange={handleChange}>
           <option>Gender</option>
           <option value='Female'>Female</option>

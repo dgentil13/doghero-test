@@ -23,9 +23,9 @@ const Form = ({ handleChange, handleSubmit, activeHandler, dogs, walks }) => {
                     onClick={e => activeHandler(e, dog._id)}
                   >
                     {dog.activeWalk ? (
-                      <img src='/images/leash.svg' />
+                      <img src='/images/leash.svg' alt='Leash full' />
                     ) : (
-                      <img src='/images/leash-empty.svg' />
+                      <img src='/images/leash-empty.svg' alt='Leash empty' />
                     )}
                   </button>
                 </div>

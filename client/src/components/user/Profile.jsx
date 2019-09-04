@@ -12,6 +12,7 @@ const Profile = ({ getUser }) => {
     getUserInfo();
   }, []);
 
+  // Gets Users Data
   const getUserInfo = () => {
     axios
       .get(`http://localhost:8000/api/user`, {
@@ -23,12 +24,13 @@ const Profile = ({ getUser }) => {
       .catch(err => console.log(err));
   };
 
+  // handles form edition submit
   const submitHandler = e => {
     e.preventDefault();
     const { fullName, address, number } = user;
     axios
       .put(
-        `http://localhost:8000/api/user-edit`,
+        `${process.env.REACT_APP_API_URL}/user-edit`,
         { fullName, address, number },
         {
           withCredentials: true,
@@ -42,6 +44,7 @@ const Profile = ({ getUser }) => {
       });
   };
 
+  // Handles input changes
   const changeHandler = e => {
     const { name, value } = e.target;
     setUser({

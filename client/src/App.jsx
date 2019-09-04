@@ -39,6 +39,7 @@ const App = () => {
     setRole(role);
   };
 
+  //Routes for logged in user
   if (loggedInUser) {
     return (
       <div className='App'>
@@ -75,6 +76,7 @@ const App = () => {
       </div>
     );
   } else {
+    //Routes for logged off user
     return (
       <div className='App'>
         <Navbar
