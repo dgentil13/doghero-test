@@ -11,7 +11,7 @@ const Profile = ({ getUser }) => {
 
   useEffect(() => {
     getUserInfo();
-  }, [user]);
+  }, []);
 
   // Gets Users Data
   const getUserInfo = () => {

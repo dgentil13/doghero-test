@@ -29,7 +29,7 @@ const App = () => {
           setLoggedInUser(false);
         });
     }
-  }, [loggedInUser]);
+  }, []);
 
   const getTheUser = userObj => {
     setLoggedInUser(userObj);
