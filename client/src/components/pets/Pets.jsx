@@ -111,7 +111,9 @@ const Pets = ({ getUser }) => {
               <img src='/images/plus-solid.svg' alt='Add' />
             </button>
           </div>
-          {dogList.length > 0 ? (
+          {dogList === null ? (
+            <p> Loading ... </p>
+          ) : dogList.length > 0 ? (
             <div className='card-box'>
               {dogList.map((dog, idx) => {
                 return <Card key={idx} dogInfo={dog} delPet={delPets} />;

@@ -75,7 +75,7 @@ const App = () => {
         <Footer />
       </div>
     );
-  } else {
+  } else if (loggedInUser === null || loggedInUser === false) {
     //Routes for logged off user
     return (
       <div className='App'>
