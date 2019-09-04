@@ -27,7 +27,7 @@ To run this project:
 * Axios
 * Heroku
 
-#Next Steps:
+# Next Steps:
 * Finish pages meant for dog walkers, the routes are ready, but the front-end doesn't exist yet, apart from sign up.
 * Implement responsiveness.
 * Calendar and Clock for walk scheduling.
