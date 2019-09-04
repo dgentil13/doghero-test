@@ -27,4 +27,13 @@ To run this project:
 * Axios
 * Heroku
 
-
+#Next Steps:
+* Finish pages meant for dog walkers, the routes are ready, but the front-end doesn't exist yet, apart from sign up.
+* Implement responsiveness.
+* Calendar and Clock for walk scheduling.
+* Error treatment in front-end, which is lacking.
+* Testing with Jest, Enzyme and maybe Cypress for Front-End.
+* Testing with Mocha or Jest for Back-End.
+* Containarization with Docker.
+* Build API documentation.
+* Rebuild it all in another language! (Ruby/Angular)
