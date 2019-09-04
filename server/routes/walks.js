@@ -26,16 +26,15 @@ const transporter = nodemailer.createTransport({
 router.get('/walks', (req, res) => {
   Walks.find()
     .populate('walker owner dogs')
-    .then((walks) => res.json(walks))
-    .catch((err) => res.json(err));
+    .then(walks => res.json(walks))
+    .catch(err => res.json(err));
 });
 
 // Create a Walk
 router.post('/create-walk', (req, res) => {
-  const { type, duration, days, time, address, dogs } = req.body;
+  const { duration, days, time, address, dogs } = req.body;
 
   const newWalk = new Walks({
-    type,
     duration,
     days,
     time,
@@ -47,19 +46,19 @@ router.post('/create-walk', (req, res) => {
 
   newWalk
     .save()
-    .then((walk) => {
+    .then(walk => {
       const email = [];
       User.findByIdAndUpdate(req.user.id, { $push: { walks: walk } })
-        .then((user) => res.status(200).json(user))
-        .catch((err) => res.status(400).json(err));
+        .then(user => res.status(200).json(user))
+        .catch(err => res.status(400).json(err));
 
       User.find({ role: 'Walker' })
-        .then((walker) => {
-          walker.map((el) => {
+        .then(walker => {
+          walker.map(el => {
             return email.push(el.email);
           });
 
-          email.forEach((el) => {
+          email.forEach(el => {
             transporter.sendMail({
               from: '"DogHero" <teste@email.com>',
               to: el,
@@ -70,9 +69,9 @@ router.post('/create-walk', (req, res) => {
             });
           });
         })
-        .catch((err) => res.status(400).json(err));
+        .catch(err => res.status(400).json(err));
     })
-    .catch((err) => res.status(400).json(err));
+    .catch(err => res.status(400).json(err));
 });
 
 router.put('/confirm/:walkId', (req, res) => {
@@ -80,8 +79,8 @@ router.put('/confirm/:walkId', (req, res) => {
     { _id: req.params.walkId },
     { status: 'Confirmed', walker: req.user },
   )
-    .then((res) => res.status(200).json(res))
-    .catch((err) => res.status(400).json(err));
+    .then(res => res.status(200).json(res))
+    .catch(err => res.status(400).json(err));
 });
 
 // Delete Walk
@@ -101,9 +100,9 @@ router.delete('/del-walk/:walkId', (req, res) => {
             message: `Pet with id ${req.params.walkId} was removed successfully.`,
           });
         })
-        .catch((err) => res.json(err));
+        .catch(err => res.json(err));
     })
-    .catch((err) => {
+    .catch(err => {
       res.json(err);
     });
 });

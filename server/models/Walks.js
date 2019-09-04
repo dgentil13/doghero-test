@@ -4,7 +4,6 @@ const { Schema } = mongoose;
 
 const walkSchema = new Schema(
   {
-    type: { type: String },
     duration: { type: String },
     days: [{ type: String }],
     time: { type: String },

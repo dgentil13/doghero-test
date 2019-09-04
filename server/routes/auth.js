@@ -70,6 +70,7 @@ router.post('/signup', (req, res) => {
       });
     });
   }
+
   // User SignUp as a Walker
   if (req.body.role === 'Walker') {
     const { email, password, fullName, number, address, role } = req.body;

@@ -5,10 +5,10 @@ const { Schema } = mongoose;
 const dogSchema = new Schema(
   {
     name: { type: String, required: true },
-    gender: { type: String },
+    gender: { type: String, enum: ['Female', 'Male'] },
     // picture: { type: String, default: '' },
-    race: { type: String },
-    age: { type: String },
+    race: { type: String, required: true },
+    age: { type: String, required: true },
     size: { type: String },
     additionalInfo: { type: String },
     activeWalk: { type: Boolean },
