@@ -1,7 +1,6 @@
 import React, { Fragment } from 'react';
 
 const Form = ({ handleSubmit, handleChange, userInfo }) => {
-  console.log(userInfo);
   return (
     <Fragment>
       <form onSubmit={e => handleSubmit(e)}>
