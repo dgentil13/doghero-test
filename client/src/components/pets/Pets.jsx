@@ -111,7 +111,7 @@ const Pets = ({ getUser }) => {
               <img src='/images/plus-solid.svg' alt='Add' />
             </button>
           </div>
-          {dogList === null ? (
+          {dogList === null || dogList === undefined ? (
             <p> Loading ... </p>
           ) : dogList.length > 0 ? (
             <div className='card-box'>

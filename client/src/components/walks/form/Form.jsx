@@ -13,7 +13,7 @@ const Form = ({ handleChange, handleSubmit, activeHandler, dogs, walks }) => {
         />
         <h4> Who's going on the walk?</h4>
         <div className='box-walk'>
-          {dogs === undefined ? (
+          {dogs === undefined || dogs === undefined ? (
             <p> Loading...</p>
           ) : dogs.length > 0 ? (
             dogs.map((dog, idx) => {
