@@ -18,12 +18,15 @@ To run this project:
 `npm start`
 
 # Technologies Used
-Node.js
-Express.js
-MongoDB
-React (with hooks)
-Sass
-HTML
-Axios
-Heroku
+* JavaScript
+* React (with hooks)
+* HTML
+* Sass
+* Axios
+* PropTypes
+* Jest
+* Enzyme
+* Docker
+* Heroku
+
 
