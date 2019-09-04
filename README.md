@@ -11,10 +11,10 @@ Create an app for dog walkers/owners - creation, listing and pet introduction, c
 To run this project:
 
 1. Download this repository
-2. Using the terminal, inside the project folder, run npm i to install all dependencies.
+2. Using the terminal, inside the project folder, for both client and server, run npm i to install all dependencies.
 `npm i`
 
-3. Still inside the project folder, run npm start to build the project.
+3. Still inside the project folder, for both client and server, run npm start to build the project.
 `npm start`
 
 # Technologies Used
