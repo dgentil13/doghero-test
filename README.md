@@ -14,15 +14,17 @@ To run this project:
 2. Using the terminal, inside the project folder, for both client and server, run npm i to install all dependencies.
 `npm i`
 
-3. Using another instance of the terminal, run:
+3. Still inside the project folder, for both client and server, run npm start to build the project.
+`npm start`
+
+4. Using another instance of the terminal, run:
 `service mongod start` 
 && 
 `mongo`
 
 If you don't have MongoDB installed: ( https://docs.mongodb.com/manual/tutorial/install-mongodb-on-ubuntu/ ) 
 
-4. Still inside the project folder, for both client and server, run npm start to build the project.
-`npm start`
+
 
 
 # Technologies Used
