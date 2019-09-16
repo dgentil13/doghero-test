@@ -18,19 +18,13 @@ My plan was to build a system to connect users and dog walkers.
 To run this project:
 
 1. Download this repository
-2. Using the terminal, inside the project folder, for both client and server, run npm i to install all dependencies.
-`npm i`
+2. Using the terminal, inside the project folder, run:
+`docker-compose up --build`
 
-3. Still inside the project folder, for both client and server, run npm start to build the project.
-`npm start`
+If you want to remove the container: 
+`docker-compose down`
 
-4. Using another instance of the terminal, run:
-`service mongod start` 
-&& 
-`mongo`
-
-If you don't have MongoDB installed: ( https://docs.mongodb.com/manual/tutorial/install-mongodb-on-ubuntu/ ) 
-
+* This container will run in port 3000: http://localhost:8000/ !
 
 # Technologies Used
 * Node.js
@@ -42,6 +36,7 @@ If you don't have MongoDB installed: ( https://docs.mongodb.com/manual/tutorial/
 * Postman
 * Axios
 * Heroku
+* Docker
 
 # Next Steps:
 * Finish pages meant for dog walkers, the routes are ready, but the front-end doesn't exist yet, apart from sign up.
@@ -50,6 +45,5 @@ If you don't have MongoDB installed: ( https://docs.mongodb.com/manual/tutorial/
 * Error treatment in front-end, which is lacking.
 * Testing with Jest, Enzyme and maybe Cypress for Front-End.
 * Testing with Mocha or Jest for Back-End.
-* Containarization with Docker.
 * Build API documentation.
 * Rebuild it all in another language! (Ruby/Angular)
