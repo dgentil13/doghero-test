@@ -7,6 +7,8 @@ services:
       - '8000:8000'
     volumes:
       - .:/usr/app/server
+      - /usr/app/server/node_modules/
+
     depends_on:
       - mongo
   mongo:

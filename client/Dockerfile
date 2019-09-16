@@ -2,7 +2,7 @@
 FROM node:alpine
 
 # Set the working directory to /app
-RUN mkdir -p usr/app/client
+RUN mkdir -p /usr/app/client
 WORKDIR /usr/app/client
 
 # Copy the current directory contents into the container at /app

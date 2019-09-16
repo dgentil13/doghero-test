@@ -9,9 +9,7 @@ WORKDIR /usr/app/server
 COPY ["package.json", "package-lock.json*", "./"]
 
 # Install any needed packages specified in package.json
-RUN apk --no-cache add --virtual native-deps \
-  g++ gcc libgcc libstdc++ linux-headers autoconf automake make nasm python git && \
-  npm install --quiet node-gyp -g && npm install
+RUN npm install
 # Copy the the rest of directory contents
 COPY . .
 
