@@ -24,7 +24,7 @@ To run this project:
 If you want to remove the container: 
 `docker-compose down`
 
-* This container will run in port 3000: http://localhost:8000/ !
+* This container will run in port 3000: http://localhost:3000/ !
 
 # Technologies Used
 * Node.js
