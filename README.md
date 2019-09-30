@@ -46,4 +46,4 @@ If you want to remove the container:
 * Testing with Jest, Enzyme and maybe Cypress for Front-End.
 * Testing with Mocha or Jest for Back-End.
 * Build API documentation.
-* Rebuild it all in another language! (Ruby/Angular)
+
